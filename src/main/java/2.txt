@@ -1,0 +1,36 @@
+Compiled from "common.java"
+public class common {
+  public common();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: sipush        200
+       5: sipush        200
+       8: dup
+       9: istore_1
+      10: if_icmpeq     17
+      13: iload_1
+      14: goto          20
+      17: sipush        300
+      20: istore_2
+      21: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      24: iload_1
+      25: sipush        200
+      28: dup
+      29: istore_1
+      30: if_icmpeq     37
+      33: iconst_1
+      34: goto          38
+      37: iconst_0
+      38: invokevirtual #3                  // Method java/io/PrintStream.println:(Z)V
+      41: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      44: iload_2
+      45: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V
+      48: return
+}

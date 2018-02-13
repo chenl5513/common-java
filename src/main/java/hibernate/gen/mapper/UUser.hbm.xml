@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 注意包名。不写的话下面要写全限定名 -->
+<hibernate-mapping  package="hibernate.bean">
+	<!-- 类名对应表名 -->
+	<class name="UUser" table="u_user">
+		<!-- 主键使用id标签。然后对应属性名与列名 -->
+		<id name="id" type="long" column="id">
+			<!-- 自增长主键不同数据库有不同类型的自增长类型，有需要可以百度到答案的 -->
+			<generator class="native"></generator>
+		</id>
+		<!-- 非主键映射关系，注意类型并不是单纯的java类型也不是数据库类型，而是一种中间类型，注意大小写特别是String在这里开头要小写 -->
+		<property name="nickname" type="string" column="nickname"></property>
+		<property name="email" type="string" column="email"></property>
+		<property name="pswd" type="string" column="pswd"></property>
+		<property name="createTime" type="timestamp" column="createTime"></property>
+		<property name="lastLoginTime" type="timestamp" column="lastLoginTime"></property>
+		<property name="status" type="long" column="status"></property>
+	</class>
+	<class name="URole" table="u_role">
+		<!-- 主键使用id标签。然后对应属性名与列名 -->
+		<id name="id" type="long" column="id">
+			<!-- 自增长主键不同数据库有不同类型的自增长类型，有需要可以百度到答案的 -->
+			<generator class="native"></generator>
+		</id>
+		<!-- 非主键映射关系，注意类型并不是单纯的java类型也不是数据库类型，而是一种中间类型，注意大小写特别是String在这里开头要小写 -->
+		<property name="name" type="string" column="name"></property>
+		<property name="type" type="string" column="type"></property>
+	</class>
+	<class name="UPermission" table="u_permission">
+		<!-- 主键使用id标签。然后对应属性名与列名 -->
+		<id name="id" type="long" column="id">
+			<!-- 自增长主键不同数据库有不同类型的自增长类型，有需要可以百度到答案的 -->
+			<generator class="native"></generator>
+		</id>
+		<!-- 非主键映射关系，注意类型并不是单纯的java类型也不是数据库类型，而是一种中间类型，注意大小写特别是String在这里开头要小写 -->
+		<property name="name" type="string" column="name"></property>
+		<property name="url" type="string" column="url"></property>
+	</class>
+	<class name="URolePermission" table="u_role_permission">
+		<!-- 主键使用id标签。然后对应属性名与列名 -->
+		<id name="id" type="long" column="id">
+			<!-- 自增长主键不同数据库有不同类型的自增长类型，有需要可以百度到答案的 -->
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="role" class="URole" column="rid"  cascade="all"> </many-to-one>
+		<many-to-one name="permission" class="UPermission" column="pid"  cascade="all"> </many-to-one>
+	</class>
+
+</hibernate-mapping>
