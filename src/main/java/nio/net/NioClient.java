@@ -73,16 +73,6 @@ public class NioClient {
         if(selectionKey.isValid()){
 
             //读事件
-            if(selectionKey.isWritable()){
-
-                //发送数据
-                ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
-                writeBuffer.put("我是一只鸟".getBytes());
-                socketChannel.write(writeBuffer);
-                socketChannel.close();
-                isStart = false;
-
-            }
             if(selectionKey.isConnectable()){
 
                 SocketChannel channel = (SocketChannel) selectionKey.channel();
@@ -96,12 +86,15 @@ public class NioClient {
 
                 //在这里可以给服务端发送信息哦
                 ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
-                writeBuffer.put("我是一只鸟".getBytes("UTF-8"));
-                //writeBuffer.flip();
+
+                writeBuffer.put("我是一只鸟".getBytes());
+                writeBuffer.flip();
                 channel.write(writeBuffer);
+                //channel.write(ByteBuffer.wrap(new String("我是一只鸟").getBytes()));
 
                 //在和服务端连接成功之后，为了可以接收到服务端的信息，需要给通道设置读的权限。
                 channel.register(this.selector, SelectionKey.OP_READ);
+
                 channel.close();
                 isStart = false;
 

@@ -89,13 +89,14 @@ public class NioServer {
 
                 SocketChannel channel = (SocketChannel) selectionKey.channel();
                 ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-                /*int read = channel.read(readBuffer);
-                final  int remain = readBuffer.remaining();
+                int read = channel.read(readBuffer);
+                /*final  int remain = readBuffer.remaining();
                 byte[] bytes = new byte[1024];
                 readBuffer.flip();
                 readBuffer.get(bytes);*/
+                readBuffer.flip();
                 byte[] bytes = readBuffer.array();
-                System.out.println(new String(bytes,"utf-8"));
+                System.out.println(new String(bytes));
                 channel.close();
 
             }

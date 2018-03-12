@@ -136,7 +136,7 @@ public class SocketClient {
     public static void main(String[] args) {  
         SocketClient sc = null;  
         try {  
-            sc = new SocketClient("localhost", 9999);  
+            sc = new SocketClient("localhost", 8888);
             sc. pollSelect();  
         } catch (Exception e) {  
             e.printStackTrace();  
