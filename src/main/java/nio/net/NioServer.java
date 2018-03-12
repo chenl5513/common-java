@@ -1,10 +1,12 @@
 package nio.net;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -97,6 +99,9 @@ public class NioServer {
                 readBuffer.flip();
                 byte[] bytes = readBuffer.array();
                 System.out.println(new String(bytes));
+
+
+                response(channel);
                 channel.close();
 
             }
@@ -104,6 +109,33 @@ public class NioServer {
 
 
 
+        }
+
+
+    }
+
+    private void response(SocketChannel channel) {
+
+        String body = "<html><head></head><body><h1>哈哈哈</h1></body></html>";
+
+        String response = "HTTP/1.1 200 OK \r\n";
+        response += "Date: "+new Date().toGMTString()+"\r\n";
+        response += "Server: localhost\r\n";
+        response += "Content-Type: text/html;charset=utf-8\r\n";
+        response += "Content-Encoding: gzip\r\n";
+        response += "Connection: Keep-Alive\r\n";
+        try {
+            response += "Content-Length: "+body.getBytes("UTF-8").length+"\r\n\r\n";
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        response += body;
+
+        System.out.println(response);
+        try {
+            channel.write(ByteBuffer.wrap(response.getBytes("UTF-8")));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
