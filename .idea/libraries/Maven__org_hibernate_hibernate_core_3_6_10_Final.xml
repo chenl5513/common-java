@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: org.hibernate:hibernate-core:3.6.10.Final">
     <CLASSES>
-      <root url="jar://E:/Repository/org/hibernate/hibernate-core/3.6.10.Final/hibernate-core-3.6.10.Final.jar!/" />
+      <root url="jar://E:/repository/org/hibernate/hibernate-core/3.6.10.Final/hibernate-core-3.6.10.Final.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://E:/Repository/org/hibernate/hibernate-core/3.6.10.Final/hibernate-core-3.6.10.Final-javadoc.jar!/" />

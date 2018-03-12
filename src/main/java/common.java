@@ -1,3 +1,5 @@
+import java.nio.ByteBuffer;
+
 /**
  * Title: common
  * Description: 请更改这里的描述
@@ -14,11 +16,19 @@ public class common {
 
 	public static void main(String[] args) {
 
+		ByteBuffer bf = ByteBuffer.allocate(10);
 
-		int a = 0;
-		int b = (200!=(a=200))?a:300;
-		System.out.println(  a!=(a=200)  );
-		System.out.println(b);
+		String str =  "哈哈哈";
+		final byte[] bytes = str.getBytes();
+		System.out.println(bytes.length);
+		bf.put(bytes);
+		bf.flip();
+		bf.put(bytes);
+		System.out.println(bf.position());
+		System.out.println(bf.limit());
+		System.out.println(bf.capacity());
+
+
 
 	}
 }
